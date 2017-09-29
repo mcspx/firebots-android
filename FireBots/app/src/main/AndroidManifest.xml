@@ -65,6 +65,12 @@
             android:name=".Activities.LoginActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"/>
+
+        <!-- Chatroom activity -->
+        <activity
+            android:name=".Activities.ChatroomActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

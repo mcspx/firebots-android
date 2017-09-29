@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        style="@style/AppTheme.Toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/action_bar_height"
+        android:background="@color/primary"
+        android:fitsSystemWindows="true"
+        app:contentInsetStart="0dp"
+        app:layout_scrollFlags="scroll|enterAlways">
+
+        <include
+            android:id="@+id/layout_toolbar"
+            layout="@layout/layout_toolbar" />
+
+    </android.support.v7.widget.Toolbar>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <com.mobcomlab.firebots.Views.ButtonMedium
+            android:id="@+id/start_chat_button"
+            style="@style/Button.Response"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height"
+            android:layout_centerInParent="true"
+            android:enabled="true"
+            android:text="@string/start_chat" />
+
+    </RelativeLayout>
+
+
+
+</LinearLayout>
