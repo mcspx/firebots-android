@@ -1,0 +1,30 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!-- Panel -->
+    <dimen name="panel_width">288dp</dimen>
+    <dimen name="panel_half_width">142.5dp</dimen>
+
+    <!-- Button -->
+    <dimen name="button_width">288dp</dimen>
+    <dimen name="button_height">45dp</dimen>
+    <dimen name="button_text_size">20sp</dimen>
+
+    <!-- ActionBar -->
+    <dimen name="action_bar_height">40dp</dimen>
+    <dimen name="padding_bank_account">96dp</dimen>
+    <dimen name="recyclerview_bank_account_height">350dp</dimen>
+    <dimen name="explore_height_star">16dp</dimen>
+    <dimen name="explore_width_star">16dp</dimen>
+    <dimen name="review_height_star">22dp</dimen>
+    <dimen name="review_width_star">22dp</dimen>
+    <dimen name="parent_rating_star">18dp</dimen>
+    <dimen name="large_padding">30dp</dimen>
+    <dimen name="small_padding">16dp</dimen>
+    <dimen name="xsmall_padding">4dp</dimen>
+    <dimen name="little_padding">8dp</dimen>
+    <dimen name="ticket_indicator">-30dp</dimen>
+
+</resources>

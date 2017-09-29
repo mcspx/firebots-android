@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Android Theme Colors -->
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="black_87">#dd000000</color>
+    <color name="white87">#FFFFFFDC</color>
+
+    <!-- Colors -->
+    <color name="blue">#4285F4</color>
+    <color name="yellow">#FBBC05</color>
+    <color name="red">#EA4235</color>
+    <color name="white">#FFFFFF</color>
+    <color name="offWhite">#F7F7F7</color>
+    <color name="gray">#808080</color>
+    <color name="lightGray">#D6D6D6</color>
+    <color name="superLightGray">#E1E1E1</color>
+    <color name="black">#000000</color>
+    <color name="lightBlack">#404040</color>
+    <!--<color name="black_54">#8a000000</color>-->
+    <!--<color name="black_30">#44000000</color>-->
+    <!--<color name="black_12">#1e000000</color>-->
+
+    <!-- Default theme -->
+    <color name="primary">@color/blue</color>
+    <color name="secondary">@color/yellow</color>
+    <color name="background">@color/superLightGray</color>
+
+    <!-- Component defaults -->
+    <color name="textFieldBackground">@color/offWhite</color>
+    <color name="textFieldPanelBorder">@color/lightGray</color>
+
+    <color name="tabBarViewBackground">@color/lightGray</color>
+    <color name="tabBarBackground">@color/white</color>
+
+    <color name="textNormal">@color/gray</color>
+    <color name="textUnselected">#B9B9B9</color>
+    <color name="textSelected">@color/secondary</color>
+
+    <color name="pageControlUnselected">#ABABAB</color>
+    <color name="pageControlSelected">#EFA60A</color>
+
+    <color name="shadow">@color/gray</color>
+
+    <color name="buttonEnable">@color/secondary</color>
+    <color name="buttonEnableBorder">#FDF5DC</color>
+
+    <color name="buttonDisable">@color/lightGray</color>
+    <color name="buttonDisableBorder">@color/offWhite</color>
+
+    <color name="chatBackground">@color/superLightGray</color>
+    <color name="chatDisplayName">#7E7E7E</color>
+</resources>

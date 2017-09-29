@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primary">
+
+    <com.mobcomlab.firebots.Views.TextViewTitle
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="@string/app_name"
+        android:textColor="@color/white"
+        android:textAllCaps="true"
+        android:textSize="50sp" />
+
+</LinearLayout>

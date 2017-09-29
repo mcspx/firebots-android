@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">FireBots</string>
+    <string name="username">Username</string>
+    <string name="login">Login</string>
+    <string name="login_progress">Loading</string>
+    <string name="login_fail">Login Fail</string>
+    <string name="network_error">Network Error</string>
+    <string name="ok">OK</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+</resources>
