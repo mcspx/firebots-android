@@ -40,11 +40,10 @@ public class Message implements Serializable {
     public String photoURL = null;
     public StorageReference photoRef = null;
     public Boolean isFirstMessageOfDate = false;
-    private Boolean isNew = false;
     public Boolean isMediaMessage = false;
     public DatabaseReference ref = null;
 
-    public Message(String id, String senderId, String senderName , String width, String height , DateTime sendingTime, String data, Boolean isNew, DateTime lastMessageDate) {
+    public Message(String id, String senderId, String senderName , String width, String height, DateTime sendingTime, String data, DateTime lastMessageDate) {
         this.id = id;
         this.senderId = senderId;
         this.senderName = senderName;
@@ -59,7 +58,6 @@ public class Message implements Serializable {
             this.isMediaMessage = false;
         }
         this.isFirstMessageOfDate = lastMessageDate == null || checkIsFirstMessageOfDate(lastMessageDate);
-        this.isNew = isNew;
     }
 
     public Message(DataSnapshot dataSnapshot) {
@@ -101,9 +99,6 @@ public class Message implements Serializable {
             result.put(Key.text, text);
         }
         result.put(Key.isFirstMessageOfDate, isFirstMessageOfDate);
-        if (isNew) {
-            result.put("new", true);
-        }
         return result;
     }
 

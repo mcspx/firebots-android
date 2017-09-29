@@ -1,0 +1,117 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingBottom="5dp"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp"
+    android:paddingTop="5dp">
+
+    <LinearLayout
+        android:id="@+id/date_layout"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_marginBottom="5dp"
+        android:gravity="center">
+
+        <com.mobcomlab.firebots.Views.TextViewMedium
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:alpha="0.7"
+            android:background="@drawable/chat_date_bubble"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/message_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/date_layout"
+        android:paddingEnd="12dp"
+        android:paddingLeft="0dp"
+        android:paddingRight="12dp"
+        android:paddingStart="0dp">
+
+        <com.mobcomlab.firebots.Views.TextViewNormal
+            android:id="@+id/sender_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:textColor="@color/textNormal"
+            android:textSize="14sp" />
+
+        <RelativeLayout
+            android:id="@+id/message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/sender_name"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:paddingEnd="40dp"
+            android:paddingLeft="0dp"
+            android:paddingRight="40dp"
+            android:paddingStart="0dp">
+
+            <com.mobcomlab.firebots.Views.TextViewNormal
+                android:id="@+id/text_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:autoLink="web"
+                android:background="@drawable/chat_incoming_bubble"
+                android:textColor="@color/textNormal"
+                android:textColorLink="@color/blue"
+                android:textIsSelectable="true"
+                android:textSize="16sp" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/message"
+            android:layout_alignEnd="@+id/message"
+            android:layout_alignRight="@+id/message"
+            android:gravity="start"
+            android:minWidth="40dp"
+            android:orientation="vertical"
+            android:paddingEnd="0dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="0dp"
+            android:paddingStart="8dp">
+
+            <TextView
+                android:id="@+id/timestamp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/textNormal"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <com.mobcomlab.firebots.Views.TextViewMedium
+        android:id="@+id/unread"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_below="@+id/message_layout"
+        android:layout_marginTop="5dp"
+        android:alpha="0.7"
+        android:background="@drawable/chat_date_bubble"
+        android:gravity="center"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:text="@string/unread_message_below"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="12sp" />
+
+</RelativeLayout>

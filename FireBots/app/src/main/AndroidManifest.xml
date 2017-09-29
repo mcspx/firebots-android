@@ -71,6 +71,18 @@
             android:name=".Activities.ChatroomActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"/>
+
+        <!-- Chat activity -->
+        <activity
+            android:name=".Activities.ChatActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <!-- Preview Image activity -->
+        <activity
+            android:name=".Activities.ImagePreviewActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.FullScreen"/>
     </application>
 
 </manifest>

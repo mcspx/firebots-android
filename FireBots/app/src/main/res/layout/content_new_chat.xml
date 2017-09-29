@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".Activities.ChatActivity"
+    tools:showIn="@layout/activity_chat">
+
+    <com.mobcomlab.firebots.Views.TextViewNormal
+        android:id="@+id/chat_welcome_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:text="@string/chat_welcome_text"
+        android:textSize="15sp"
+        android:textColor="@color/textNormal"
+        android:visibility="gone"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="50dp"
+        android:scrollbars="vertical"
+        android:windowSoftInputMode="adjustResize"
+        android:visibility="gone"/>
+
+    <LinearLayout
+        android:background="@color/primary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:weightSum="4">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:gravity="center">
+
+            <ImageView android:id="@+id/chat_image_upload_button"
+                android:layout_width="25dp"
+                android:layout_height="20dp"
+                android:background="@drawable/ic_camera"
+                android:contentDescription="@string/chat" />
+
+        </LinearLayout>
+
+        <EditText android:id="@+id/content_new_message"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:padding="4dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:hint="@string/write_a_comment"
+            android:textColorHint="@color/textUnselected"
+            android:textColor="@color/textNormal"
+            android:textSize="16sp"
+            android:windowSoftInputMode="adjustResize"
+            android:background="@drawable/white_panel"/>
+
+        <Button android:id="@+id/chat_send_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:gravity="center"
+            android:text="@string/send"
+            android:textSize="16sp"
+            android:textAllCaps="false"
+            android:textColor="@color/textUnselected"
+            android:background="@null"
+            android:enabled="false"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

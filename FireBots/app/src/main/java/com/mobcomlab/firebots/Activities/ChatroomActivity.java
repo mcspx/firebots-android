@@ -39,9 +39,9 @@ public class ChatroomActivity extends MainActivity implements View.OnClickListen
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.start_chat_button:
-//                FBChatroom.getChatroomRef().child(FBConstant.USER).child(FBUser.uid).setValue(true);
-//                Intent intent = new Intent(this, ChatActivity.class);
-//                startActivity(intent);
+                FBChatroom.getChatroomRef().child(FBConstant.USER).child(FBUser.uid).setValue(true);
+                Intent intent = new Intent(this, ChatActivity.class);
+                startActivity(intent);
                 break;
             case R.id.toolbar_menu_logout:
                 swapToLoginActivity();
