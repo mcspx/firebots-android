@@ -18,7 +18,11 @@ public class SplashScreen extends MainActivity implements GoogleApiClient.OnConn
 
     // Properties
     // Properties permission
-    private String[] PERMISSIONS = {Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CALL_PHONE};
+    private String[] PERMISSIONS = {
+            Manifest.permission.CAMERA,
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_COARSE_LOCATION
+    };
 
     public SplashScreen() {
         super(R.layout.activity_splash);
