@@ -20,8 +20,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.StorageReference;
 import com.mobcomlab.firebots.Adapters.MessageAdapter;
+import com.mobcomlab.firebots.Constants;
 import com.mobcomlab.firebots.Firebase.FBChatroom;
 import com.mobcomlab.firebots.Firebase.FBConstant;
 import com.mobcomlab.firebots.Firebase.FBUser;
@@ -51,6 +51,7 @@ public class ChatActivity extends MainActivity implements MessageAdapter.OnMessa
     private LinearLayoutManager layoutManager;
     private MessageAdapter messageAdapter;
 
+    private String chatroomID;
     private ArrayList<String> memberIDs = new ArrayList<>();
     private EditText inputMessage;
     private Button sendButton;
@@ -74,11 +75,13 @@ public class ChatActivity extends MainActivity implements MessageAdapter.OnMessa
         // Show loading indicator
         DialogHelper.showIndicator(this, getResources().getString(R.string.loading));
 
+        chatroomID = getIntent().getStringExtra(Constants.EXTRA_CHATROOM_ID);
+
         // Initialize Database
-        chatroomRef = FBChatroom.getChatroomRef();
-        chatroomUserRef = FBChatroom.getChatroomRef().child(FBConstant.USER);
-        chatroomMessageRef = FBChatroom.getChatroomRef().child(FBConstant.MESSAGE);
-        messageQuery = FBChatroom.getChatroomRef().child(FBConstant.MESSAGE).
+        chatroomRef = FBChatroom.getChatroomRef().child(chatroomID);
+        chatroomUserRef = FBChatroom.getChatroomRef().child(chatroomID).child(FBConstant.USER);
+        chatroomMessageRef = FBChatroom.getChatroomRef().child(chatroomID).child(FBConstant.MESSAGE);
+        messageQuery = FBChatroom.getChatroomRef().child(chatroomID).child(FBConstant.MESSAGE).
                 orderByChild(FBConstant.SENDING_TIME).limitToLast(5000);
         userRef = FBUser.getUserRef();
 

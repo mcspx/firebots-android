@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.mobcomlab.firebots.Constants;
 import com.mobcomlab.firebots.Firebase.FBChatroom;
 import com.mobcomlab.firebots.Firebase.FBConstant;
 import com.mobcomlab.firebots.Firebase.FBUser;
@@ -39,8 +40,10 @@ public class ChatroomActivity extends MainActivity implements View.OnClickListen
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.start_chat_button:
-                FBChatroom.getChatroomRef().child(FBConstant.USER).child(FBUser.uid).setValue(true);
+                String chatroomID = FBChatroom.getChatroomRef().push().getKey();
+                FBChatroom.getChatroomRef().child(chatroomID).child(FBConstant.USER).child(FBUser.uid).setValue(true);
                 Intent intent = new Intent(this, ChatActivity.class);
+                intent.putExtra(Constants.EXTRA_CHATROOM_ID, chatroomID);
                 startActivity(intent);
                 break;
             case R.id.toolbar_menu_logout:

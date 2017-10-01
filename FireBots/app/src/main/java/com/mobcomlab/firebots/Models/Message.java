@@ -22,6 +22,7 @@ public class Message implements Serializable {
         static final String senderName = "senderName";
         static final String sendingTime = "sendingTime";
         static final String text = "text";
+        static final String isBot = "isBot";
     }
 
     public String id = null;
@@ -56,6 +57,7 @@ public class Message implements Serializable {
         result.put(Key.senderName, senderName);
         result.put(Key.sendingTime, DateHelper.toISO8601String(sendingTime));
         result.put(Key.text, text);
+        result.put(Key.isBot, false);
         return result;
     }
 
