@@ -26,6 +26,9 @@ import com.mobcomlab.firebots.R;
 import com.mobcomlab.firebots.Views.ButtonMedium;
 import com.mobcomlab.firebots.Views.TextViewMedium;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class ChatroomActivity extends MainActivity implements View.OnClickListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
     // Properties
@@ -85,7 +88,6 @@ public class ChatroomActivity extends MainActivity implements View.OnClickListen
 
     @Override
     public void onConnected(Bundle connectionHint) {
-        Log.d("TESTTEST", "Connected");
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
@@ -120,8 +122,10 @@ public class ChatroomActivity extends MainActivity implements View.OnClickListen
 
                     startChatButton.setEnabled(true);
 
-                    user.ref.setValue(user.toMap());
-
+                    final Map<String, Object> userUpdate = new HashMap<>();
+                    userUpdate.put("lat", user.lat);
+                    userUpdate.put("lng", user.lng);
+                    user.ref.updateChildren(userUpdate);
                 }
 
                 @Override
