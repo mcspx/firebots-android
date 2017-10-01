@@ -7,12 +7,15 @@ import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 
+import com.google.android.gms.appinvite.AppInvite;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.mobcomlab.firebots.Constants;
 import com.mobcomlab.firebots.Helpers.DateHelper;
 import com.mobcomlab.firebots.Helpers.PermissionHelper;
 import com.mobcomlab.firebots.R;
+
+import me.leolin.shortcutbadger.ShortcutBadger;
 
 public class SplashScreen extends MainActivity implements GoogleApiClient.OnConnectionFailedListener {
 
@@ -24,6 +27,9 @@ public class SplashScreen extends MainActivity implements GoogleApiClient.OnConn
             Manifest.permission.ACCESS_COARSE_LOCATION
     };
 
+    private String notificationType;
+    private String chatroomID;
+
     public SplashScreen() {
         super(R.layout.activity_splash);
     }
@@ -33,6 +39,14 @@ public class SplashScreen extends MainActivity implements GoogleApiClient.OnConn
         super.onCreate(savedInstanceState);
         // Setup JodaTime for default timezone convert
         DateHelper.setupJodaTime(this);
+
+        // Get post key from intent
+        if (getIntent().hasExtra(Constants.EXTRA_NOTIFICATION_TYPE)) {
+            notificationType = getIntent().getStringExtra(Constants.EXTRA_NOTIFICATION_TYPE);
+        }
+        if (getIntent().hasExtra(Constants.EXTRA_CHATROOM_ID)) {
+            chatroomID = getIntent().getStringExtra(Constants.EXTRA_CHATROOM_ID);
+        }
 
     }
 
@@ -50,12 +64,34 @@ public class SplashScreen extends MainActivity implements GoogleApiClient.OnConn
             int PERMISSION_ALL = 1;
             ActivityCompat.requestPermissions(this, PERMISSIONS, PERMISSION_ALL);
         } else {
-            if (isAuth()) {
-                final Bundle extras = new Bundle();
+            checkNotification();
+        }
+    }
+
+    private void checkNotification() {
+        if (isAuth()) {
+            final Bundle extras = new Bundle();
+            if (notificationType != null) {
+                // Set up extra parameter
+                switch (notificationType) {
+                    case Constants.EXTRA_NOTIFICATION_TYPE_CHATROOM_INVITATION:
+                        extras.putBoolean(Constants.EXTRA_IS_NOTIFICATION, true);
+                        extras.putString(Constants.EXTRA_CHATROOM_ID, chatroomID);
+                        break;
+//                    case Constants.EXTRA_NOTIFICATION_TYPE_NEW_MESSAGE:
+//                        extras.putInt(Constants.TABBAR_START_PAGE, 2);
+//                        extras.putBoolean(Constants.EXTRA_IS_NOTIFICATION, true);
+//                        extras.putString(Constants.EXTRA_ACTIVITY_ID, activityID);
+//                        break;
+                    default:
+                        break;
+                }
                 startCountdown(extras);
             } else {
-                startCountdown(null);
+                startCountdown(extras);
             }
+        } else {
+            startCountdown(null);
         }
     }
 
@@ -72,7 +108,7 @@ public class SplashScreen extends MainActivity implements GoogleApiClient.OnConn
                 // This method will be executed once the timer is over
                 if (extras != null) {
                     // Start your app Tabbar activity
-                    swapToChatroomActivity();
+                    swapToChatroomActivity(extras);
                 } else {
                     // Start your app Login activity
                     swapToLoginActivity();
@@ -86,12 +122,7 @@ public class SplashScreen extends MainActivity implements GoogleApiClient.OnConn
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (isAuth()) {
-            final Bundle extras = new Bundle();
-            startCountdown(extras);
-        } else {
-            startCountdown(null);
-        }
+        checkNotification();
     }
 
     @Override

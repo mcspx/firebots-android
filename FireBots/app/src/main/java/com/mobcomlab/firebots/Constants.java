@@ -23,7 +23,7 @@ public class Constants {
     public static final String EXTRA_VIDEO_URI = "videoUri";
     public static final String EXTRA_IS_NOTIFICATION = "isNotification";
     public static final String EXTRA_NOTIFICATION_TYPE = "type";
-    public static final String EXTRA_NOTIFICATION_TYPE_PAYMENT_CONFIRMED = "paymentConfirmed";
+    public static final String EXTRA_NOTIFICATION_TYPE_CHATROOM_INVITATION = "chatroomInvitation";
     public static final String EXTRA_NOTIFICATION_TYPE_NEW_MESSAGE = "newMessage";
     public static final String EXTRA_BADGE = "badge";
     public static final String EXTRA_FORM_STATE = "formState";

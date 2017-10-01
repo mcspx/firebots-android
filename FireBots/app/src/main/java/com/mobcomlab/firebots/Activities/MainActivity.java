@@ -54,9 +54,12 @@ public abstract class MainActivity extends AppCompatActivity {
         FBUser.removeToken();
     }
 
-    protected void swapToChatroomActivity() {
+    protected void swapToChatroomActivity(Bundle extras) {
         Intent intent = new Intent(this, ChatroomActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        if (extras != null) {
+            intent.putExtras(extras);
+        }
         startActivity(intent);
     }
 }

@@ -79,7 +79,7 @@ public class LoginActivity extends MainActivity implements View.OnClickListener,
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             FBUser.setupUser(task.getResult().getUser().getUid(), username);
-                            swapToChatroomActivity();
+                            swapToChatroomActivity(new Bundle());
                             DialogHelper.dismissIndicator();
                             finish();
                         } else {

@@ -12,6 +12,7 @@ import android.util.Log;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+import com.mobcomlab.firebots.Activities.ChatroomActivity;
 
 import java.util.Map;
 
@@ -47,53 +48,51 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         if (remoteMessage.getData().size() > 0) {
             Log.d(TAG, "Message data payload: " + remoteMessage.getData());
             final Map<String, String> data = remoteMessage.getData();
-
-//            switch (data.get(Constants.EXTRA_NOTIFICATION_TYPE)) {
-//                case Constants.EXTRA_NOTIFICATION_TYPE_PAYMENT_CONFIRMED:
-//                    intent = new Intent(this, TabBarActivity.class);
-//                    intent.putExtra(Constants.TABBAR_START_PAGE, 1);
-//                    intent.putExtra(Constants.EXTRA_IS_NOTIFICATION, true);
-//                    intent.putExtra(Constants.EXTRA_BOOKING_ID, data.get(Constants.EXTRA_BOOKING_ID));
-//                    break;
+            switch (data.get(Constants.EXTRA_NOTIFICATION_TYPE)) {
+                case Constants.EXTRA_NOTIFICATION_TYPE_CHATROOM_INVITATION:
+                    intent = new Intent(this, ChatroomActivity.class);
+                    intent.putExtra(Constants.EXTRA_IS_NOTIFICATION, true);
+                    intent.putExtra(Constants.EXTRA_CHATROOM_ID, data.get(Constants.EXTRA_CHATROOM_ID));
+                    break;
 //                case Constants.EXTRA_NOTIFICATION_TYPE_NEW_MESSAGE:
 //                    intent = new Intent(this, TabBarActivity.class);
 //                    intent.putExtra(Constants.TABBAR_START_PAGE, 2);
 //                    intent.putExtra(Constants.EXTRA_IS_NOTIFICATION, true);
 //                    intent.putExtra(Constants.EXTRA_ACTIVITY_ID, data.get(Constants.EXTRA_ACTIVITY_ID));
 //                    break;
-//                default:
-//                    intent = new Intent(this, MainActivity.class);
-//                    break;
-//            }
+                default:
+                    intent = new Intent(this, ChatroomActivity.class);
+                    break;
+            }
         } else {
-//            intent = new Intent(this, MainActivity.class);
+            intent = new Intent(this, ChatroomActivity.class);
         }
 
         // Check if message contains a notification payload.
         if (remoteMessage.getNotification() != null) {
-//            Log.d(TAG, "Message Notification All: " + remoteMessage.getNotification());
-//            Log.d(TAG, "Message Notification Tag: " + remoteMessage.getNotification().getTag());
-//            Log.d(TAG, "Message Notification Title: " + remoteMessage.getNotification().getTitle());
-//            Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
-//
-//            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
-//                    PendingIntent.FLAG_ONE_SHOT);
-//
-//            Uri defaultSoundUri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-//            NotificationCompat.Builder notificationBuilder = (NotificationCompat.Builder) new NotificationCompat.Builder(this)
-//                    .setSmallIcon(R.mipmap.ic_launcher)
-//                    .setColor(ContextCompat.getColor(this, R.color.primary))
-//                    .setContentTitle(getResources().getString(R.string.app_name))
-//                    .setContentText(remoteMessage.getNotification().getBody())
-//                    .setAutoCancel(true)
-//                    .setSound(defaultSoundUri)
-//                    .setContentIntent(pendingIntent);
-//
-//            NotificationManager notificationManager =
-//                    (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-//
-//            notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
+            Log.d(TAG, "Message Notification All: " + remoteMessage.getNotification());
+            Log.d(TAG, "Message Notification Tag: " + remoteMessage.getNotification().getTag());
+            Log.d(TAG, "Message Notification Title: " + remoteMessage.getNotification().getTitle());
+            Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
+
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
+                    PendingIntent.FLAG_ONE_SHOT);
+
+            Uri defaultSoundUri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+            NotificationCompat.Builder notificationBuilder = (NotificationCompat.Builder) new NotificationCompat.Builder(this)
+                    .setSmallIcon(R.mipmap.ic_launcher)
+                    .setColor(ContextCompat.getColor(this, R.color.primary))
+                    .setContentTitle(getResources().getString(R.string.app_name))
+                    .setContentText(remoteMessage.getNotification().getBody())
+                    .setAutoCancel(true)
+                    .setSound(defaultSoundUri)
+                    .setContentIntent(pendingIntent);
+
+            NotificationManager notificationManager =
+                    (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+            notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
         }
         
         // Also if you intend on generating your own notifications as a result of a received FCM

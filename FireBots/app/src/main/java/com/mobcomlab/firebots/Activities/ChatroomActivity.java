@@ -39,6 +39,7 @@ public class ChatroomActivity extends MainActivity implements View.OnClickListen
     private GoogleApiClient googleApiClient;
     private Location location;
     private User user;
+    private String chatroomID = null;
 
     public ChatroomActivity() {
         super(R.layout.activity_chatroom);
@@ -49,6 +50,11 @@ public class ChatroomActivity extends MainActivity implements View.OnClickListen
         super.onCreate(savedInstanceState);
 
         setTitle(R.id.toolbar_title, getResources().getString(R.string.app_name));
+
+        // Get post key from intent
+        if (getIntent().hasExtra(Constants.EXTRA_CHATROOM_ID)) {
+            chatroomID = getIntent().getStringExtra(Constants.EXTRA_CHATROOM_ID);
+        }
 
         logoutButton = (TextViewMedium) findViewById(R.id.toolbar_menu_logout);
         startChatButton = (ButtonMedium) findViewById(R.id.start_chat_button);
@@ -66,24 +72,33 @@ public class ChatroomActivity extends MainActivity implements View.OnClickListen
         } else {
             googleApiClient.connect();
         }
+
+        // Notification direct when press on notification type newMessage
+        if (chatroomID != null) {
+            startChat();
+        }
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.start_chat_button:
-                String chatroomID = FBChatroom.getChatroomRef().push().getKey();
+                chatroomID = FBChatroom.getChatroomRef().push().getKey();
                 Chatroom chatroom = new Chatroom(chatroomID, user.lat, user.lng);
                 FBChatroom.getChatroomRef().child(chatroomID).setValue(chatroom.toMap());
-                FBChatroom.getChatroomRef().child(chatroomID).child(FBConstant.USER).child(FBUser.uid).setValue(true);
-                Intent intent = new Intent(this, ChatActivity.class);
-                intent.putExtra(Constants.EXTRA_CHATROOM_ID, chatroomID);
-                startActivity(intent);
+                startChat();
                 break;
             case R.id.toolbar_menu_logout:
                 swapToLoginActivity();
                 break;
         }
+    }
+
+    public void startChat() {
+        FBChatroom.getChatroomRef().child(chatroomID).child(FBConstant.USER).child(FBUser.uid).setValue(true);
+        Intent intent = new Intent(this, ChatActivity.class);
+        intent.putExtra(Constants.EXTRA_CHATROOM_ID, chatroomID);
+        startActivity(intent);
     }
 
     @Override
